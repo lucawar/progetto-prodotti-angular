@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div *ngFor="let prodotto of prodotti" class="col-md-4 mb-4">
+      <div class="card h-100">
+        <img [src]="prodotto.immagine" class="card-img-top" alt="Immagine Prodotto">
+        <div class="card-body">
+          <h5 class="card-title">{{ prodotto.nome }}</h5>
+          <p class="card-text">{{ prodotto.descrizione }}</p>
+          <p class="card-text">Prezzo: {{ prodotto.prezzo | currency:'EUR' }}</p>
+          <p class="card-text">Marca: {{ prodotto.marca }}</p>
+          <p class="card-text">Tipo Prodotto: {{ prodotto.tipoProd }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
