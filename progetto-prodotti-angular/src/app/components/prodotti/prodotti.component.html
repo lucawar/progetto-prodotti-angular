@@ -10,6 +10,12 @@
           <p class="card-text">Marca: {{ prodotto.marca }}</p>
           <p class="card-text">Tipo Prodotto: {{ prodotto.tipoProd }}</p>
         </div>
+        <div class="d-flex">
+          <div>
+        <button>ciao</button>
+        <button class="btn btn-danger" (click)="deleteProdotto(prodotto?.id)">ELIMINA</button>
+        </div>
+        </div>
       </div>
     </div>
   </div>

@@ -16,4 +16,9 @@ export class ProdottiService {
   getProdotti(page: number = 0, size: number = 10): Observable<any> {
     return this.http.get<any>(`${this.baseURL}/prodotti/all?page=${page}&size=${size}`)
   }
+
+  // CANCELLA PRODOTTO
+  deleteProdotto(prodotto_id: string): Observable<void> {
+  return this.http.delete<any>(`${this.baseURL}/prodotti/elimina/${prodotto_id}`)
+  }
 }

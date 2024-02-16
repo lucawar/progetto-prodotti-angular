@@ -50,4 +50,26 @@ export class ProdottiComponent implements OnInit {
       }
     );
   }
+
+  // CANCELLA PRODOTTO
+  deleteProdotto(prodotto_id: string | undefined) {
+    if (prodotto_id) {
+      // Chiedi conferma all'utente prima di procedere con l'eliminazione
+      if (confirm('Sei sicuro di voler eliminare questo prodotto?')) {
+        // Effettua l'operazione di eliminazione solo se l'utente conferma
+        this.prodottiService.deleteProdotto(prodotto_id).subscribe(
+          () => {
+            // Rimuovi il prodotto dalla lista dopo la cancellazione
+            this.prodotti = this.prodotti.filter(prodotto => prodotto.id !== prodotto_id);
+            console.log('Prodotto eliminato:', prodotto_id);
+            alert('Prodotto eliminato con successo');
+          },
+          (error) => {
+            console.error('Errore durante l eliminazione del prodotto:', error);
+            alert('Si è verificato un errore durante l\'eliminazione del prodotto. Si prega di riprovare più tardi.');
+          }
+        );
+      }
+    }
+  }
 }
