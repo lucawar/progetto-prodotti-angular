@@ -1,34 +1,56 @@
 <div class="container">
 
-  <form (ngSubmit)="creaNuovoProdotto()">
-    <div class="form-group">
-      <label for="nome">Nome:</label>
-      <input type="text" class="form-control" id="nome" placeholder="Inserire il nome" [(ngModel)]="nuovoProdotto.nome" name="nome" required>
+ <!-- Button per aprire il modale -->
+ <div>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nuovoProdottoModal">
+  Aggiungi Nuovo Prodotto
+</button>
+ </div>
+<!-- Modale per l'inserimento di un nuovo prodotto -->
+<div class="modal" id="nuovoProdottoModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Inserisci un Nuovo Prodotto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Form per l'inserimento del nuovo prodotto -->
+        <form (ngSubmit)="creaNuovoProdotto()">
+          <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" class="form-control" id="nome" placeholder="Inserire il nome" [(ngModel)]="nuovoProdotto.nome" name="nome" required>
+          </div>
+          <div class="form-group">
+            <label for="marca">Marca:</label>
+            <input type="text" class="form-control" id="marca" placeholder="Inserire la marca" [(ngModel)]="nuovoProdotto.marca" name="marca" required>
+          </div>
+          <div class="form-group">
+            <label for="descrizione">Descrizione:</label>
+            <input type="text" class="form-control" id="descrizione" placeholder="Inserire la descrizione" [(ngModel)]="nuovoProdotto.descrizione" name="descrizione" required>
+          </div>
+          <div class="form-group">
+            <label for="prezzo">Prezzo:</label>
+            <input type="number" class="form-control" id="prezzo" [(ngModel)]="nuovoProdotto.prezzo" name="prezzo" required>
+          </div>
+          <div class="form-group">
+            <label for="tipoProd">Tipo Prodotto:</label>
+            <select class="form-control" id="tipoProd" [(ngModel)]="nuovoProdotto.tipoProd" name="tipoProd" required>
+              <option *ngFor="let tipoProd of tipiProdottoEnum" [ngValue]="tipoProd">{{tipoProd}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="immagine">Immagine:</label>
+            <input type="text" class="form-control" id="immagine" placeholder="Facoltativo" [(ngModel)]="nuovoProdotto.immagine" name="immagine">
+          </div>
+          <button type="submit" class="btn btn-primary">Crea Prodotto</button>
+        </form>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="marca">Marca:</label>
-      <input type="text" class="form-control" id="marca" placeholder="Inserire la marca" [(ngModel)]="nuovoProdotto.marca" name="marca" required>
-    </div>
-    <div class="form-group">
-      <label for="descrizione">Descrizione:</label>
-      <input type="text" class="form-control" id="descrizione" placeholder="Inserire la descrizione" [(ngModel)]="nuovoProdotto.descrizione" name="descrizione" required>
-    </div>
-    <div class="form-group">
-      <label for="prezzo">Prezzo:</label>
-      <input type="number" class="form-control" id="prezzo" [(ngModel)]="nuovoProdotto.prezzo" name="prezzo" required>
-    </div>
-    <div class="form-group">
-      <label for="tipoProd">Tipo Prodotto:</label>
-      <select class="form-control" id="tipoProd" [(ngModel)]="nuovoProdotto.tipoProd" name="tipoProd" required>
-        <option *ngFor="let tipoProd of tipiProdottoEnum" [ngValue]="tipoProd">{{tipoProd}}</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="immagine">Immagine:</label>
-      <input type="text" class="form-control" id="immagine" placeholder="Facoltativo" [(ngModel)]="nuovoProdotto.immagine" name="immagine">
-    </div>
-    <button type="submit" class="btn btn-primary">Crea Prodotto</button>
-  </form>
+  </div>
+</div>
 
   <div class="row">
 
