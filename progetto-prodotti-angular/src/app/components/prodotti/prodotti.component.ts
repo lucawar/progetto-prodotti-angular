@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TipologiaProdotti } from 'src/app/enums/tipologia-prodotti';
 import { ProdottiInterface } from 'src/app/models/prodotti.interface';
 import { ProdottiService } from 'src/app/service/prodotti.service';
 
@@ -9,8 +10,12 @@ import { ProdottiService } from 'src/app/service/prodotti.service';
 })
 export class ProdottiComponent implements OnInit {
   prodotti: ProdottiInterface[] = [];
+  nuovoProdotto: ProdottiInterface = { id: '', nome: '',marca: '', descrizione: '', prezzo: 0, tipoProd: TipologiaProdotti.SMARTPHONE };
+   // Array contenente i valori dell'enum
+   tipiProdottoEnum = Object.values(TipologiaProdotti);
   page: number = 0;
   isLoading: boolean = false;
+
 
   constructor(private prodottiService: ProdottiService) {}
 
@@ -30,6 +35,26 @@ export class ProdottiComponent implements OnInit {
       this.loadProdotti();
     }
   }
+
+  // CREA PRODOTTO
+  creaNuovoProdotto() {
+    this.isLoading = true;
+    this.prodottiService.creaProdotto(this.nuovoProdotto).subscribe(
+      (response) => {
+        console.log('Nuovo prodotto creato:', response);
+        this.prodotti.push(response);
+        this.nuovoProdotto = { id: '', nome: '',marca: '', descrizione: '', prezzo: 0, tipoProd:TipologiaProdotti.SMARTPHONE, immagine: '' }; // Resetta il nuovo prodotto per prepararsi alla creazione successiva
+        this.isLoading = false;
+        alert('Nuovo prodotto creato con successo');
+      },
+      (error) => {
+        console.error('Errore durante la creazione del nuovo prodotto:', error);
+        alert('Si è verificato un errore durante la creazione del nuovo prodotto. Si prega di riprovare più tardi.');
+        this.isLoading = false;
+      }
+    );
+  }
+
 
   // GET ALL PRODOTTI
   loadProdotti() {
@@ -72,4 +97,6 @@ export class ProdottiComponent implements OnInit {
       }
     }
   }
+
+
 }

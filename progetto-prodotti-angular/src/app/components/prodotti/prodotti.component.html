@@ -1,5 +1,37 @@
 <div class="container">
+
+  <form (ngSubmit)="creaNuovoProdotto()">
+    <div class="form-group">
+      <label for="nome">Nome:</label>
+      <input type="text" class="form-control" id="nome" placeholder="Inserire il nome" [(ngModel)]="nuovoProdotto.nome" name="nome" required>
+    </div>
+    <div class="form-group">
+      <label for="marca">Marca:</label>
+      <input type="text" class="form-control" id="marca" placeholder="Inserire la marca" [(ngModel)]="nuovoProdotto.marca" name="marca" required>
+    </div>
+    <div class="form-group">
+      <label for="descrizione">Descrizione:</label>
+      <input type="text" class="form-control" id="descrizione" placeholder="Inserire la descrizione" [(ngModel)]="nuovoProdotto.descrizione" name="descrizione" required>
+    </div>
+    <div class="form-group">
+      <label for="prezzo">Prezzo:</label>
+      <input type="number" class="form-control" id="prezzo" [(ngModel)]="nuovoProdotto.prezzo" name="prezzo" required>
+    </div>
+    <div class="form-group">
+      <label for="tipoProd">Tipo Prodotto:</label>
+      <select class="form-control" id="tipoProd" [(ngModel)]="nuovoProdotto.tipoProd" name="tipoProd" required>
+        <option *ngFor="let tipoProd of tipiProdottoEnum" [ngValue]="tipoProd">{{tipoProd}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="immagine">Immagine:</label>
+      <input type="text" class="form-control" id="immagine" placeholder="Facoltativo" [(ngModel)]="nuovoProdotto.immagine" name="immagine">
+    </div>
+    <button type="submit" class="btn btn-primary">Crea Prodotto</button>
+  </form>
+
   <div class="row">
+
     <div *ngFor="let prodotto of prodotti" class="col-md-4 mb-4">
       <div class="card h-100">
         <img [src]="prodotto.immagine" class="card-img-top" alt="Immagine Prodotto">
@@ -12,11 +44,13 @@
         </div>
         <div class="d-flex">
           <div>
-        <button>ciao</button>
+        <button class="btn btn-primary">MODIFICA</button>
         <button class="btn btn-danger" (click)="deleteProdotto(prodotto?.id)">ELIMINA</button>
         </div>
         </div>
       </div>
     </div>
+
   </div>
 </div>
+
